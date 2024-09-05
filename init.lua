@@ -5,6 +5,9 @@ vim.cmd [[packadd packer.nvim]]
 require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
+  
+  use 'lukas-reineke/indent-blankline.nvim'
+    require('ibl').setup()
 
   -- File tree plugin
   use {
@@ -36,7 +39,6 @@ vim.api.nvim_set_keymap('n', '<leader>n', ':bnext<CR>', { noremap = true, silent
 -- Switch to the previous buffer
 vim.api.nvim_set_keymap('n', '<leader>p', ':bprevious<CR>', { noremap = true, silent = true })
 
-vim.cmd('NvimTreeOpen /home/landotech/Documents/Github/')
 
 vim.api.nvim_set_keymap('t', '<Esc>', '<C-\\><C-n>', { noremap = true, silent = true })
 
