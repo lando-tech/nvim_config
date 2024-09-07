@@ -39,7 +39,7 @@ vim.api.nvim_set_keymap('n', '<leader>n', ':bnext<CR>', { noremap = true, silent
 -- Switch to the previous buffer
 vim.api.nvim_set_keymap('n', '<leader>p', ':bprevious<CR>', { noremap = true, silent = true })
 
-
 vim.api.nvim_set_keymap('t', '<Esc>', '<C-\\><C-n>', { noremap = true, silent = true })
 
+vim.api.nvim_set_keymap('n', '<leader>r', ':w | :terminal python3 %<CR>', { noremap = true, silent = true })
 
