@@ -6,6 +6,10 @@ require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
   
+  use 'Shougo/deoplete.nvim'
+  
+  use 'deoplete-plugins/deoplete-jedi'
+    
   use 'lukas-reineke/indent-blankline.nvim'
     require('ibl').setup()
 
@@ -41,5 +45,9 @@ vim.api.nvim_set_keymap('n', '<leader>p', ':bprevious<CR>', { noremap = true, si
 
 vim.api.nvim_set_keymap('t', '<Esc>', '<C-\\><C-n>', { noremap = true, silent = true })
 
-vim.api.nvim_set_keymap('n', '<leader>r', ':w | :terminal python3 %<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>r', ':w | belowright split | resize -10 | :terminal python3 %<CR>', { noremap = true, silent = true })
+
+vim.g['deoplete#enable_at_startup'] = 1
+
+vim.g['deoplete#sources#jedi#python_path'] = {'/home/landotech/Documents/GitHub/drawmate.me/.venv//bin/python3'}
 
