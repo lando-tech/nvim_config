@@ -2,17 +2,32 @@
 -- Ensure packer is installed
 vim.cmd [[packadd packer.nvim]]
 
+vim.g.python3_host_prog = '/usr/bin/python3'
+
 require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
   
-  use 'Shougo/deoplete.nvim'
+  use {
+    'Shougo/deoplete.nvim',
+    run = ':UpdateRemotePlugins',
+    config = function()
+      vim.g['deoplete#enable_at_startup'] = 1
+    end
+  }
   
-  use 'deoplete-plugins/deoplete-jedi'
-    
-  use 'lukas-reineke/indent-blankline.nvim'
-    require('ibl').setup()
-
+  use {
+    'deoplete-plugins/deoplete-jedi',
+    config = function()
+      vim.g['deoplete#sources#jedi#python_path'] = '/home/landotech/Documents/GitHub/drawmate.me/.venv/bin/python3'
+    end
+  } 
+  use {
+    'lukas-reineke/indent-blankline.nvim',
+    config = function()
+      require('ibl').setup()
+    end
+  }
   -- File tree plugin
   use {
     'nvim-tree/nvim-tree.lua',
@@ -43,11 +58,16 @@ vim.api.nvim_set_keymap('n', '<leader>n', ':bnext<CR>', { noremap = true, silent
 -- Switch to the previous buffer
 vim.api.nvim_set_keymap('n', '<leader>p', ':bprevious<CR>', { noremap = true, silent = true })
 
+-- Set escape for terminal mode
 vim.api.nvim_set_keymap('t', '<Esc>', '<C-\\><C-n>', { noremap = true, silent = true })
 
+-- Run python script in a new terminal split below 
 vim.api.nvim_set_keymap('n', '<leader>r', ':w | belowright split | resize -10 | :terminal python3 %<CR>', { noremap = true, silent = true })
 
-vim.g['deoplete#enable_at_startup'] = 1
+-- Toggle folding on current line with spacebar
+vim.api.nvim_set_keymap('n', '<space>', 'za', { noremap = true})
 
-vim.g['deoplete#sources#jedi#python_path'] = {'/home/landotech/Documents/GitHub/drawmate.me/.venv//bin/python3'}
-
+-- Set fold options 
+vim.opt.foldmethod = 'indent'
+vim.opt.foldlevel = 99
+vim.opt.foldenable = true
