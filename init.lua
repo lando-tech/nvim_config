@@ -7,21 +7,7 @@ vim.g.python3_host_prog = '/usr/bin/python3'
 require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
-  
-  use {
-    'Shougo/deoplete.nvim',
-    run = ':UpdateRemotePlugins',
-    config = function()
-      vim.g['deoplete#enable_at_startup'] = 1
-    end
-  }
-  
-  use {
-    'deoplete-plugins/deoplete-jedi',
-    config = function()
-      vim.g['deoplete#sources#jedi#python_path'] = '/home/landotech/Documents/GitHub/drawmate.me/.venv/bin/python3'
-    end
-  } 
+
   use {
     'lukas-reineke/indent-blankline.nvim',
     config = function()
@@ -71,3 +57,5 @@ vim.api.nvim_set_keymap('n', '<space>', 'za', { noremap = true})
 vim.opt.foldmethod = 'indent'
 vim.opt.foldlevel = 99
 vim.opt.foldenable = true
+
+
