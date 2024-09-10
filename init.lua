@@ -22,6 +22,8 @@ require('packer').startup(function(use)
       'saadparwaiz1/cmp_luasnip', -- Snippet completions 
     }
   }
+  
+  use "zootedb0t/citruszest.nvim"
 
   use {
     'lukas-reineke/indent-blankline.nvim',
@@ -113,6 +115,9 @@ lspconfig.jdtls.setup{
   on_attach = on_attach
 }
 
+-- Apply color theme
+vim.cmd("colorscheme citruszest")
+
 -- Enable line numbers
 vim.wo.number = true
 
@@ -123,7 +128,7 @@ vim.api.nvim_set_keymap('i', 'jj', '<Esc>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<C-n>', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
 
 -- Optional: Set relative line numbers (if you prefer)
--- vim.wo.relativenumber = true
+vim.wo.relativenumber = true
 
 -- Switch to the next buffer
 vim.api.nvim_set_keymap('n', '<leader>n', ':bnext<CR>', { noremap = true, silent = true })
@@ -145,4 +150,8 @@ vim.opt.foldmethod = 'indent'
 vim.opt.foldlevel = 99
 vim.opt.foldenable = true
 
+-- Set indent settings
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
+vim.tabstop = 4
 
