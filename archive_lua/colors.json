@@ -1,0 +1,32 @@
+{
+  "editor": {
+    "background": "#0A0A0F",  
+    "foreground": "#EAEAEA",   
+    "selectionBackground": "#2D2D48",
+    "caretColor": "#FFB74D",    
+    "lineHighlight": "#161621"
+  },
+  "syntax": {
+    "comment": "#6D6D79",  
+    "keyword": "#FF9900",   
+    "string": "#A1FF5F",     
+    "function": "#9A86FD",    
+    "variable": "#E1E1FF",     
+    "number": "#FFEB3B",        
+    "type": "#66FFBB",           
+    "constant": "#F7D779"      
+  },
+  "gutter": {
+    "background": "#131319",    
+    "foreground": "#5F5F7B"      
+  },
+  "scrollbar": {
+    "thumb": "#3E3E5E",        
+    "track": "#1C1C28"
+  },
+  "statusBar": {
+    "background": "#0F0F14",     
+    "foreground": "#B5B5B5"
+  }
+}
+
