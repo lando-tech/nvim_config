@@ -6,9 +6,13 @@ vim.cmd [[packadd packer.nvim]]
 require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
-  
+
   use 'neovim/nvim-lspconfig'
-   
+
+  use 'nvim-lua/plenary.nvim'
+
+  use 'L3MON4D3/LuaSnip'
+
   use {
     'hrsh7th/nvim-cmp', -- Completion Plugin
     requires = {
@@ -22,12 +26,6 @@ require('packer').startup(function(use)
     }
   }
 
-  use {
-    'lukas-reineke/indent-blankline.nvim',
-    config = function()
-      require('ibl').setup()
-    end
-  }
   -- File tree plugin
   use {
     'nvim-tree/nvim-tree.lua',
@@ -40,25 +38,45 @@ require('packer').startup(function(use)
   }
 end)
 
+-- Mappings.
+local on_attach = function(_, bufnr)
+  local opts = { noremap=true, silent=true }
+  -- Keymaps for LSP
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+end
+
 -- Setup LSP
 
 -- Ensure Python path
 vim.g.python3_host_prog = '/usr/bin/python3'
 
--- Ensure Java path
-vim.g.java_home = '/usr/lib/jvm/java-21-openjdk-amd64/bin/java'
-
--- Run java
-vim.cmd('let $JAVA_HOME = "' .. vim.g.java_home .. '"')
-
 -- LSP setup
 local lspconfig = require'lspconfig'
 
 -- Python (pyright)
-lspconfig.pyright.setup{}
+lspconfig.pyright.setup{
+  on_attach = on_attach
+}
 
--- Java (JDTLS)
-lspconfig.jdtls.setup{}
+-- Lua LSP setup
+lspconfig.lua_ls.setup {
+  cmd = { 'lua-language-server' },  -- Use the global executable
+  on_attach = on_attach,
+  settings = {
+    Lua = {
+      runtime = { version = 'LuaJIT' },  -- Neovim uses LuaJIT
+      diagnostics = { globals = {'vim'} },  -- Recognize the 'vim' global
+      workspace = { library = vim.api.nvim_get_runtime_file("", true) },
+      telemetry = { enable = false },  -- Disable telemetry
+    },
+  },
+}
 
 -- Setup nvim-cmp
 local cmp = require'cmp'
@@ -75,6 +93,8 @@ cmp.setup({
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-e>'] = cmp.mapping.abort(),
     ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept completion
+    ['<Tab>'] = cmp.mapping.select_next_item(),
+    ['<S-Tab>'] = cmp.mapping.select_prev_item(),
   },
   sources = cmp.config.sources({
     { name = 'nvim_lsp'},
@@ -98,36 +118,6 @@ cmp.setup.cmdline(':', {
   })
 })
 
--- Mappings.
-local on_attach = function(_, bufnr)
-  local opts = { noremap=true, silent=true }
-  
-  -- Keymaps for LSP
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-end
-
--- Pass `on_attach` to the LSP setup
-local lspconfig = require'lspconfig'
-
-lspconfig.pyright.setup{
-  on_attach = on_attach
-}
-
-local jdtls_path = '/usr/lib/jvm/java-21-openjdk-amd64/bin/java'
-
-
-lspconfig.jdtls.setup{
-    cmd = {jdtls_path .. "/bin/java", "-Declipse.application=org.eclipse.jdt.ls.core.id1", "-Dosgi.bundles.defaultStartLevel=4", "-Declipse.product=org.eclipse.jdt.ls.core.product"},
-    ...
-}
-
-
 -- Options/Keymaps
 
 -- Map jj to exit Insert mode and go to Normal mode
@@ -135,7 +125,6 @@ vim.api.nvim_set_keymap('i', 'jj', '<Esc>', { noremap = true, silent = true })
 
 -- Set up a keybind to toggle the file tree (Ctrl + n)
 vim.api.nvim_set_keymap('n', '<C-n>', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
-
 
 -- Switch to the next buffer
 vim.api.nvim_set_keymap('n', '<leader>n', ':bnext<CR>', { noremap = true, silent = true })
@@ -148,6 +137,9 @@ vim.api.nvim_set_keymap('t', '<Esc>', '<C-\\><C-n>', { noremap = true, silent = 
 
 -- Run python script in a new terminal split below 
 vim.api.nvim_set_keymap('n', '<leader>r', ':w | belowright split | resize -10 | :terminal python3 %<CR>', { noremap = true, silent = true })
+
+-- Run lua script in new terminal
+vim.api.nvim_set_keymap('n', '<leader>rl', ':w | belowright split | resize -10 | terminal lua %<CR>', { noremap = true, silent = true })
 
 -- Toggle folding on current line with spacebar
 vim.api.nvim_set_keymap('n', '<space>', 'za', { noremap = true})
@@ -181,30 +173,45 @@ vim.tabstop = 4
 -- Set theme options
 
 -- Editor colors
-vim.cmd("highlight Normal guibg=#0A0A0F guifg=#EAEAEA")  -- Background and foreground
-vim.cmd("highlight Visual guibg=#2D2D48")  -- Selection background
-vim.cmd("highlight Cursor guifg=#0A0A0F guibg=#FFB74D")  -- Caret color (cursor)
-vim.cmd("highlight CursorLine guibg=#161621")  -- Line highlight
+vim.cmd("highlight Normal guibg=#1B1B23 guifg=#D4D4D8")  -- Background and foreground
+vim.cmd("highlight Visual guibg=#3C3C58")  -- Selection background
+vim.cmd("highlight Cursor guifg=#1B1B23 guibg=#FFA07A")  -- Caret color (cursor)
+vim.cmd("highlight CursorLine guibg=#2A2A3B")  -- Line highlight
 
 -- Syntax colors
-vim.cmd("highlight Comment guifg=#6D6D79")  -- Comments
-vim.cmd("highlight Keyword guifg=#FF9900")  -- Keywords
-vim.cmd("highlight String guifg=#A1FF5F")   -- Strings
-vim.cmd("highlight Function guifg=#B19CD9") -- Functions
-vim.cmd("highlight Identifier guifg=#E1E1FF") -- Variables
-vim.cmd("highlight Number guifg=#FFEB3B")   -- Numbers
-vim.cmd("highlight Type guifg=#66FFBB")     -- Types
-vim.cmd("highlight Constant guifg=#F7D779") -- Constants
-vim.cmd("highlight NvimTreeRootFolder guifg=#B19CD9")  -- Softer Purple for the root folder
-vim.cmd("highlight NvimTreeFolderName guifg=#B19CD9")  -- Softer Purple for folder names
+vim.cmd("highlight Comment guifg=#666699")  -- Comments
+vim.cmd("highlight Keyword guifg=#569fd7")
+vim.cmd("highlight String guifg=#5fd756")
+vim.cmd("highlight Identifier guifg=#d78e56")
+vim.cmd("highlight Type guifg=#FFC300 ")
+vim.cmd("highlight Number guifg=#cf56d7")
+vim.cmd("highlight Constant guifg=#cf56d7")
+vim.cmd("highlight Conditional guifg=f5ece6")
+vim.cmd("highlight Repeat guifg=#e6eff5")
+vim.cmd("highlight Statement guifg=#569fd7")
+vim.cmd("highlight Punctuation guifg=#569fd7")
+vim.cmd("highlight Delimiter guifg=#569fd7")
+
+-- Popup menu background and foreground
+vim.cmd("highlight Pmenu guibg=#2E3440 guifg=#D8DEE9")
+
+-- Popup menu selected item
+vim.cmd("highlight PmenuSel guibg=#88C0D0 guifg=#2E3440")
+
+-- Popup menu scrollbar
+vim.cmd("highlight PmenuSbar guibg=#3B4252")
+vim.cmd("highlight PmenuThumb guibg=#81A1C1")
 
 -- Gutter (line numbers)
-vim.cmd("highlight LineNr guibg=#131319 guifg=#5F5F7B") -- Gutter background and foreground
+vim.cmd("highlight LineNr guibg=#1F1F28 guifg=#DAF7A6 ")
 
--- Scrollbar colors (assuming you have a plugin to customize scrollbars)
-vim.cmd("highlight ScrollbarThumb guibg=#3E3E5E")  -- Scrollbar thumb color
-vim.cmd("highlight Scrollbar guibg=#1C1C28")       -- Scrollbar track color
+-- Scrollbar colors
+vim.cmd("highlight ScrollbarThumb guibg=#4E4E6A")
+vim.cmd("highlight Scrollbar guibg=#2C2C3C")
 
 -- StatusBar (you can use lualine or another statusline plugin)
-vim.cmd("highlight StatusLine guibg=#0F0F14 guifg=#B5B5B5") -- Status bar background and foreground
+vim.cmd("highlight StatusLine guibg=#2A2A3A guifg=#B0B0B8")
+vim.cmd("highlight NvimTreeRootFolder guifg=#FF5733")
+vim.cmd("highlight NvimTreeFolderName guifg=#B19CD9")
+vim.cmd("highlight EndOfBuffer guifg=#900C3F")
 
