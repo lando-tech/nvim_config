@@ -109,10 +109,21 @@ _G.packer_plugins = {
     path = "/home/landotech/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
     url = "https://github.com/saadparwaiz1/cmp_luasnip"
   },
+  ["lush.nvim"] = {
+    config = { "\27LJ\2\nK\0\0\5\0\3\0\b6\0\0\0'\2\1\0B\0\2\0026\2\0\0'\4\2\0B\2\2\0A\0\0\1K\0\1\0\27themes.rocketman_theme\tlush\frequire-\1\0\4\0\3\0\0066\0\0\0009\0\1\0003\2\2\0)\3\0\0B\0\3\1K\0\1\0\0\rdefer_fn\bvim\0" },
+    loaded = true,
+    path = "/home/landotech/.local/share/nvim/site/pack/packer/start/lush.nvim",
+    url = "https://github.com/rktjmp/lush.nvim"
+  },
   ["nvim-cmp"] = {
     loaded = true,
     path = "/home/landotech/.local/share/nvim/site/pack/packer/start/nvim-cmp",
     url = "https://github.com/hrsh7th/nvim-cmp"
+  },
+  ["nvim-comment"] = {
+    loaded = true,
+    path = "/home/landotech/.local/share/nvim/site/pack/packer/start/nvim-comment",
+    url = "https://github.com/terrortylor/nvim-comment"
   },
   ["nvim-lspconfig"] = {
     loaded = true,
@@ -124,6 +135,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/landotech/.local/share/nvim/site/pack/packer/start/nvim-tree.lua",
     url = "https://github.com/nvim-tree/nvim-tree.lua"
+  },
+  ["nvim-treesitter"] = {
+    loaded = true,
+    path = "/home/landotech/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
+    url = "https://github.com/nvim-treesitter/nvim-treesitter"
   },
   ["nvim-web-devicons"] = {
     loaded = true,
@@ -143,6 +159,10 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
+-- Config for: lush.nvim
+time([[Config for lush.nvim]], true)
+try_loadstring("\27LJ\2\nK\0\0\5\0\3\0\b6\0\0\0'\2\1\0B\0\2\0026\2\0\0'\4\2\0B\2\2\0A\0\0\1K\0\1\0\27themes.rocketman_theme\tlush\frequire-\1\0\4\0\3\0\0066\0\0\0009\0\1\0003\2\2\0)\3\0\0B\0\3\1K\0\1\0\0\rdefer_fn\bvim\0", "config", "lush.nvim")
+time([[Config for lush.nvim]], false)
 -- Config for: nvim-tree.lua
 time([[Config for nvim-tree.lua]], true)
 try_loadstring("\27LJ\2\n;\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\14nvim-tree\frequire\0", "config", "nvim-tree.lua")
