@@ -61,6 +61,7 @@ return lush(function()
     Identifier { fg = "#E1E1FF" },
     Number { fg = "#c10bb5" },
     Type { fg = "#66b3ff" },
+    Title { fg = "#c94212"},
     Constant { fg = "#F7D779" },
     Statement { fg = "#cc3359"},
     Special { fg = "#d26f2d"},
@@ -75,7 +76,7 @@ return lush(function()
     -- Status line
     StatusLine { fg = "#B5B5B5", bg = "#0F0F14" },
 
-    PreProc { fg = "#00cc99"},
+    PreProc { fg = "#cc3359"},
 
     NvimTreeRootFolder { fg = "#99e6ff"},
 

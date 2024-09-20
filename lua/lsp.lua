@@ -25,6 +25,22 @@ lspconfig.lua_ls.setup {
   },
 }
 
+-- Rust (rust_analyzer) setup
+lspconfig.rust_analyzer.setup{
+    on_attach = on_attach,
+    settings = {
+        ['rust-analyzer'] = {
+            cargo = {
+                allFeatures = true,
+            },
+            checkOnSave = {
+                allFeatures = true,
+                command = 'clippy',
+            },
+        }
+    }
+}
+
 -- Setup nvim-cmp
 local cmp = require'cmp'
 
