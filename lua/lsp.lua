@@ -13,7 +13,7 @@ lspconfig.pyright.setup{
 
 -- Lua LSP setup
 lspconfig.lua_ls.setup {
-  cmd = { 'lua-language-server' },  -- Use the global executable
+  cmd = { '/home/landotech/lua-language-server/bin/lua-language-server' },  -- Use the global executable
   on_attach = on_attach,
   settings = {
     Lua = {
