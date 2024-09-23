@@ -39,7 +39,7 @@ return lush(function()
     EndOfBuffer { fg = grey },
 
     -- Strings
-    String { fg = grey },
+    String { fg = green },
 
     -- Fold and Sign column
     FoldColumn { fg = black, bg = grey },
@@ -55,11 +55,11 @@ return lush(function()
     Title { fg = blue },
 
     -- Constants
-    Constant { fg = blue },
-    Number { fg = blue },
+    Constant { fg = dark_orange },
+    Number { fg = dark_orange },
     Character { fg = grey },
-    Boolean { fg = olive },
-    Float { fg = blue },
+    Boolean { fg = dark_orange },
+    Float { fg = dark_orange },
     
     -- Statement
     Statement { fg = cyan_1 },
@@ -103,8 +103,8 @@ return lush(function()
     Include { fg = olive},
 
     -- Nvim Tree
-    NvimTreeRootFolder { fg = grey, bg = black },
-    NvimTreeFolderName { fg = grey, bg = black },
+    NvimTreeRootFolder { fg = white },
+    NvimTreeFolderName { fg = white },
 
     -- Nvim Internal
     NvimInternalError { fg = white, bg = olive },
