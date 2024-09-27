@@ -19,6 +19,9 @@ vim.api.nvim_set_keymap('i', 'jj', '<Esc>', { noremap = true, silent = true })
 -- Set up a keybind to toggle the file tree (Ctrl + n)
 vim.api.nvim_set_keymap('n', '<C-n>', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
 
+-- Switch tab next
+vim.api.nvim_set_keymap('n', '<Tab>', ':tabnext', { noremap = true, silent = true})
+
 -- Switch to the next buffer
 vim.api.nvim_set_keymap('n', '<leader>n', ':bnext<CR>', { noremap = true, silent = true })
 

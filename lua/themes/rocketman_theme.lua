@@ -3,18 +3,14 @@ local black = "#131319"
 local white = "#eceff1"
 local light_grey = "#e3e8eb"
 local grey = "#90a4ae"
-local blue = "#7fb3d5"
+local blue = '#b8bb26'
 local green = "#7dcea0"
-local purple = "#7e57c2"
 local light_purple = "#ce93d8"
-local pink = "#ce93d8"
-local bg_grey = "#263238"
 local bg_2 = "#313136"
 local dark_red = "#cc3359"
 local lime = "#dce775"
-local dark_orange = "#ff6e40" 
+local dark_orange = "#ff6e40"
 local violet = "#7986cb"
-local white_grey = "#e2e2e2"
 local olive = "#afb42b"
 local cyan_1 = "#00838f"
 
@@ -34,6 +30,7 @@ return lush(function()
     Comment { fg = grey },
     Keyword { fg = cyan_1 },
     MatchParen { fg = black, bg = grey },
+    Todo { fg = black, bg = grey},
 
     -- Buffer Lines
     EndOfBuffer { fg = grey },
@@ -140,6 +137,49 @@ return lush(function()
     -- Tabline
     Tabline { fg = white, bg = grey },
     TablineFill { fg = white, bg = grey },
+
+    -- Lualine options
+    lualine_a_inactive { fg = grey, bg = black },
+
+    lualine_c_inactive  { fg = grey, bg = black },
+
+    lualine_b_inactive  { fg = grey, bg = black },
+
+    lualine_a_replace { fg = grey, bg = black },
+
+    lualine_c_replace { fg = grey, bg = black },
+
+    lualine_b_replace { fg = grey, bg = black },
+
+    lualine_a_normal { fg = grey, bg = black },
+
+    lualine_c_normal { fg = grey, bg = black },
+
+    lualine_b_normal { fg = grey, bg = black },
+
+    lualine_a_insert { fg = grey, bg = black },
+
+    lualine_c_insert { fg = grey, bg = black },
+
+    lualine_b_insert { fg = grey, bg = black },
+
+    lualine_a_visual { fg = grey, bg = black },
+
+    lualine_c_visual { fg = grey, bg = black },
+
+    lualine_b_visual { fg = grey, bg = black },
+
+    lualine_a_terminal { fg = grey, bg = black },
+
+    lualine_c_terminal { fg = grey, bg = black },
+
+    lualine_b_terminal { fg = grey, bg = black },
+
+    lualine_a_command { fg = grey, bg = black },
+
+    lualine_c_command { fg = grey, bg = black },
+
+    lualine_b_command { fg = grey, bg = black },
 
 }
 end)
