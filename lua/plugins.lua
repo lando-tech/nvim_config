@@ -26,7 +26,7 @@ require('packer').startup(function(use)
       config = function()
         -- Delay the application of the theme slightly to ensure it's loaded correctly
         vim.defer_fn(function()
-          require('lush')(require('themes.rocketman_theme'))
+          require('lush')(require('themes.vampire-theme'))
         end, 0)
       end
     }
@@ -88,19 +88,31 @@ require('lualine').setup {
     lualine_b = {'branch', 'diff', 'diagnostics'},
     lualine_c = {'filename'},
     lualine_x = {'encoding', 'fileformat', 'filetype'},
-    lualine_y = {'progress'},
+    lualine_y = {},
     lualine_z = {'location'}
   },
   inactive_sections = {
     lualine_a = {},
     lualine_b = {},
     lualine_c = {'filename'},
-    lualine_x = {'location'},
+    lualine_x = {},
     lualine_y = {},
     lualine_z = {}
   },
-  tabline = {},
+  tabline = {
+    lualine_a = {},
+    lualine_b = {'branch'},
+    lualine_c = {'filename'},
+    lualine_x = {},
+    lualine_y = {},
+    lualine_z = {}
+  },
   winbar = {},
   inactive_winbar = {},
   extensions = {}
 }
+
+require('orgmode').setup({
+  org_agenda_files = {'~/Dropbox/org/', '~/my-orgs/**/*'},
+  org_default_notes_file = '~/Dropbox/org/refile.org',
+})

@@ -3,6 +3,24 @@
 -- Ensure Python path
 vim.g.python3_host_prog = '/usr/bin/python3'
 
+-- Configure diagnostics
+vim.diagnostic.config({
+    virtual_text = false,
+    signs = true,
+    underline = true,
+    update_in_insert = false,
+    severity_sort = true,
+    float = {
+        source = 'always',
+    }
+})
+
+-- Function to show diagnostics in floating window
+vim.o.updatetime = 250
+vim.cmd([[ 
+    autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false})
+]])
+
 -- LSP setup
 local lspconfig = require'lspconfig'
 
@@ -18,7 +36,7 @@ lspconfig.lua_ls.setup {
   settings = {
     Lua = {
       runtime = { version = 'LuaJIT' },  -- Neovim uses LuaJIT
-      diagnostics = { globals = {'vim'} },  -- Recognize the 'vim' global
+      diagnostics = { globals = {'vim'}, severity_limit = "Warning"},  -- Recognize the 'vim' global
       workspace = { library = vim.api.nvim_get_runtime_file("", true) },
       telemetry = { enable = false },  -- Disable telemetry
     },
