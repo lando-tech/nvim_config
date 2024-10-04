@@ -1,11 +1,14 @@
 -- Enable warp as default shell
--- vim.o.shell = "warp"
+-- vim.o.shell = "alacritty"
 
 -- Enable true colors
 vim.o.termguicolors = true
 
 -- Enable line numbers
 vim.wo.number = true
+
+-- Disable gutter diagnostics
+vim.wo.signcolumn = 'no'
 
 -- Optional: Set relative line numbers (if you prefer)
 vim.wo.relativenumber = true

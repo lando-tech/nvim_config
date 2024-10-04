@@ -17,6 +17,8 @@ require('packer').startup(function(use)
 
   use 'nvim-lualine/lualine.nvim'
 
+  use "lukas-reineke/indent-blankline.nvim"
+
   use {'nvim-orgmode/orgmode', config = function ()
    require('orgmode').setup{}
   end}
@@ -68,8 +70,8 @@ require('lualine').setup {
   options = {
     icons_enabled = true,
     theme = 'auto',
-    component_separators = { left = '', right = ''},
-    section_separators = { left = '', right = ''},
+    component_separators = { left = '', right = '', color = { fg = "#eceff1", bg = "#00838f"}},
+    section_separators = { left = '', right = '', color = { fg = "#eceff1", bg = "#00838f"}},
     disabled_filetypes = {
       statusline = {},
       winbar = {},
@@ -116,3 +118,4 @@ require('orgmode').setup({
   org_agenda_files = {'~/Dropbox/org/', '~/my-orgs/**/*'},
   org_default_notes_file = '~/Dropbox/org/refile.org',
 })
+
