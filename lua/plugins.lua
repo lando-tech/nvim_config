@@ -9,6 +9,8 @@ require('packer').startup(function(use)
 
   use 'neovim/nvim-lspconfig'
 
+  use 'morhetz/gruvbox'
+
   use 'nvim-lua/plenary.nvim'
 
   use 'L3MON4D3/LuaSnip'
@@ -23,15 +25,15 @@ require('packer').startup(function(use)
    require('orgmode').setup{}
   end}
 
-  use {
-      'rktjmp/lush.nvim',
-      config = function()
-        -- Delay the application of the theme slightly to ensure it's loaded correctly
-        vim.defer_fn(function()
-          require('lush')(require('themes.vampire-theme'))
-        end, 0)
-      end
-    }
+  -- use {
+  --     'rktjmp/lush.nvim',
+  --     config = function()
+  --       -- Delay the application of the theme slightly to ensure it's loaded correctly
+  --       vim.defer_fn(function()
+  --         require('lush')(require('themes.vampire-theme'))
+  --       end, 0)
+  --     end
+  --   }
 
   use {
     'nvim-treesitter/nvim-treesitter',
@@ -119,3 +121,4 @@ require('orgmode').setup({
   org_default_notes_file = '~/Dropbox/org/refile.org',
 })
 
+vim.cmd('colorscheme gruvbox')
