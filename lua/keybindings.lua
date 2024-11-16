@@ -7,7 +7,7 @@ local on_attach = function(_, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>n', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-R>', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
 end
 
@@ -35,7 +35,7 @@ vim.api.nvim_set_keymap('t', '<Esc>', '<C-\\><C-n>', { noremap = true, silent = 
 vim.api.nvim_set_keymap('n', '<leader>r', ':w | belowright split | resize -10 | :terminal python3 %<CR>', { noremap = true, silent = true })
 
 -- Run lua script in new terminal
-vim.api.nvim_set_keymap('n', '<leader>rl', ':w | belowright split | resize -10 | terminal lua %<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>lr', ':w | belowright split | resize -10 | terminal lua %<CR>', { noremap = true, silent = true })
 
 -- Toggle folding on current line with spacebar
 vim.api.nvim_set_keymap('n', '<space>', 'za', { noremap = true})

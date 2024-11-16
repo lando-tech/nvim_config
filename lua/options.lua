@@ -40,3 +40,9 @@ end
 
 vim.api.nvim_set_keymap('n', '<leader>hg', ':lua GetHighlightGroupUnderCursor()<CR>', { noremap = true, silent = true })
 
+-- Enable spellcheck
+vim.opt.spell = true
+
+-- Set spellcheck language
+vim.opt.spelllang = { 'en_us' }
+

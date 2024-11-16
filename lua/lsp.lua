@@ -99,4 +99,14 @@ cmp.setup.cmdline(':', {
   })
 })
 
+-- Setup neoformat using black for python
+vim.g.neoformat_enabled_python = {'black'}
+
+-- Autocommand to format on save for Python files
+vim.cmd([[
+  augroup fmt
+    autocmd!
+    autocmd BufWritePre *.py Neoformat
+  augroup END
+]])
 

@@ -8,8 +8,27 @@ require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 
   use 'neovim/nvim-lspconfig'
+  
+  -- Themes: uncomment to use desired theme
+  -- Still working on function to switch between them
+  -- use({
+  --   'projekt0n/github-nvim-theme',
+  --   config = function()
+  --     require('github-theme').setup({
+  --       -- ...
+  --     })
+  --
+  --     vim.cmd('colorscheme github_dark')
+  --   end
+  -- })
 
   use 'morhetz/gruvbox'
+
+  -- use 'Mofiqul/vscode.nvim'
+
+  -- use 'navarasu/onedark.nvim'
+
+  -- use 'scottmckendry/cyberdream.nvim'
 
   use 'nvim-lua/plenary.nvim'
 
@@ -41,7 +60,7 @@ require('packer').startup(function(use)
       local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
       ts_update()
     end,
-    }
+}
 
   use {
     'hrsh7th/nvim-cmp', -- Completion Plugin
@@ -66,6 +85,13 @@ require('packer').startup(function(use)
       require("nvim-tree").setup {}
     end
   }
+
+  -- Setup python autoformat
+  use 'psf/black'
+
+  -- Setup neovim formatter to manage multiple filetypes
+  use 'sbdchd/neoformat'
+
 end)
 
 require('lualine').setup {
@@ -121,4 +147,11 @@ require('orgmode').setup({
   org_default_notes_file = '~/Dropbox/org/refile.org',
 })
 
-vim.cmd('colorscheme gruvbox')
+require("ibl").setup()
+
+-- require('onedark').setup({
+--     style = 'dark',
+-- })
+-- require('onedark').load()
+
+vim.cmd("colorscheme gruvbox")
