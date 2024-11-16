@@ -5,7 +5,7 @@ A simple Neovim config with a custom theme. The theme is still under development
 LSP:
 1. Rust-Analyzer provides support for rust files. Can be installed with most package managers.
 2. Pyright for Python support. Typically installed with npm, but you may be able to use a different package manager.
-3. Lua-Language-Server: best to just clone the repo from LuaLS <"https://github.com/LuaLS/lua-language-server">.
+3. Lua-Language-Server: best to just clone the repo from LuaLS https://github.com/LuaLS/lua-language-server.
 4. Make sure you modify the path for whatever shell you are using. Neovim normally looks for the LSP servers in your shell's path.
 
 # Custom nvim options
