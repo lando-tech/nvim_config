@@ -22,11 +22,11 @@ require('packer').startup(function(use)
   --   end
   -- })
 
-  use 'morhetz/gruvbox'
+  -- use 'morhetz/gruvbox'
 
   -- use 'Mofiqul/vscode.nvim'
 
-  -- use 'navarasu/onedark.nvim'
+  use 'navarasu/onedark.nvim'
 
   -- use 'scottmckendry/cyberdream.nvim'
 
@@ -152,6 +152,6 @@ require("ibl").setup()
 -- require('onedark').setup({
 --     style = 'dark',
 -- })
--- require('onedark').load()
+require('onedark').load()
 
-vim.cmd("colorscheme gruvbox")
+-- vim.cmd("colorscheme gruvbox")
