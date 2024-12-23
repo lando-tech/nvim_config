@@ -8,27 +8,8 @@ require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 
   use 'neovim/nvim-lspconfig'
-  
-  -- Themes: uncomment to use desired theme
-  -- Still working on function to switch between them
-  -- use({
-  --   'projekt0n/github-nvim-theme',
-  --   config = function()
-  --     require('github-theme').setup({
-  --       -- ...
-  --     })
-  --
-  --     vim.cmd('colorscheme github_dark')
-  --   end
-  -- })
-
-  -- use 'morhetz/gruvbox'
-
-  -- use 'Mofiqul/vscode.nvim'
 
   use 'navarasu/onedark.nvim'
-
-  -- use 'scottmckendry/cyberdream.nvim'
 
   use 'nvim-lua/plenary.nvim'
 
@@ -43,16 +24,6 @@ require('packer').startup(function(use)
   use {'nvim-orgmode/orgmode', config = function ()
    require('orgmode').setup{}
   end}
-
-  -- use {
-  --     'rktjmp/lush.nvim',
-  --     config = function()
-  --       -- Delay the application of the theme slightly to ensure it's loaded correctly
-  --       vim.defer_fn(function()
-  --         require('lush')(require('themes.vampire-theme'))
-  --       end, 0)
-  --     end
-  --   }
 
   use {
     'nvim-treesitter/nvim-treesitter',
@@ -149,9 +120,5 @@ require('orgmode').setup({
 
 require("ibl").setup()
 
--- require('onedark').setup({
---     style = 'dark',
--- })
 require('onedark').load()
 
--- vim.cmd("colorscheme gruvbox")

@@ -8,7 +8,7 @@ LSP:
 3. Lua-Language-Server: best to just clone the repo from LuaLS https://github.com/LuaLS/lua-language-server.
 4. Make sure you modify the path for whatever shell you are using. Neovim normally looks for the LSP servers in your shell's path.
 
-# Custom nvim options
+## Custom nvim options
 Options:
 I have relative line numbers set, and some automatic tabs to spaces conversions, as well as code folding enabled. There is a lot to add here, my config is very minimal so feel free to add whatever you'd like.
 

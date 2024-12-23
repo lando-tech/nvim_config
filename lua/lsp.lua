@@ -59,6 +59,18 @@ lspconfig.rust_analyzer.setup{
     }
 }
 
+lspconfig.clangd.setup{
+    cmd = { "clangd" },
+    filetypes = { "c", "cpp" },
+    root_dir = function(fname)
+        return require'lspconfig'.util.root_pattern(
+            'compile_commands.json',
+            'compile_flags.txt',
+            '.git'
+        )(fname)
+    end,
+}
+
 -- Setup nvim-cmp
 local cmp = require'cmp'
 

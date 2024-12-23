@@ -1,6 +1,3 @@
--- Enable warp as default shell
--- vim.o.shell = "alacritty"
-
 -- Enable true colors
 vim.o.termguicolors = true
 
