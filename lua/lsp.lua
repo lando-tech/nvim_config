@@ -29,19 +29,6 @@ lspconfig.pyright.setup{
   on_attach = on_attach
 }
 
--- Lua LSP setup
-lspconfig.lua_ls.setup {
-  cmd = { '/home/landotech/lua-language-server/bin/lua-language-server' },  -- Use the global executable
-  on_attach = on_attach,
-  settings = {
-    Lua = {
-      runtime = { version = 'LuaJIT' },  -- Neovim uses LuaJIT
-      diagnostics = { globals = {'vim'}, severity_limit = "Warning"},  -- Recognize the 'vim' global
-      workspace = { library = vim.api.nvim_get_runtime_file("", true) },
-      telemetry = { enable = false },  -- Disable telemetry
-    },
-  },
-}
 
 -- Rust (rust_analyzer) setup
 lspconfig.rust_analyzer.setup{
