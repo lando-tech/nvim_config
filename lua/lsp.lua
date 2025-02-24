@@ -1,7 +1,7 @@
 -- Setup LSP
 
 -- Ensure Python path
-vim.g.python3_host_prog = '/usr/bin/python3'
+vim.g.python3_host_prog = '/home/landotech/.config/nvim/venv/'
 
 -- Configure diagnostics
 vim.diagnostic.config({
@@ -24,9 +24,28 @@ vim.cmd([[
 -- LSP setup
 local lspconfig = require'lspconfig'
 
--- Python (pyright)
-lspconfig.pyright.setup{
-  on_attach = on_attach
+-- Python (pylsp)
+lspconfig.pylsp.setup{
+  on_attach = on_attach,
+  settings = {
+    pylsp = {
+    plugins = {
+        black = { enabled = true },
+        autopep8 = { enabled = false },
+        yapf = { enabled = false },
+        pylint = { enabled = true, executable = "pylint" },
+        pyflakes = { enabled = false },
+        pycodestyle = { enabled = false },
+        pylsp_mypy = { enabled = true },
+        jedi_completion = { fuzzy = true },
+        pyls_isort = { enabled = true },
+    },
+    },
+  },
+  flags = {
+    debounce_text_changes = 200,
+  },
+  capabilities = capabilities,
 }
 
 
