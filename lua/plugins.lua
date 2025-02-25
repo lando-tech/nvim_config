@@ -22,11 +22,25 @@ require("lazy").setup({
   "neovim/nvim-lspconfig",
 
   -- OneDark Theme
+  -- {
+  --   "navarasu/onedark.nvim",
+  --   config = function()
+  --     require("onedark").load()
+  --   end
+  -- },
   {
-    "navarasu/onedark.nvim",
+    "scottmckendry/cyberdream.nvim",
+    lazy = false,
+    priority = 1000,
     config = function()
-      require("onedark").load()
-    end
+      vim.cmd("colorscheme cyberdream")
+      require("cyberdream").setup({
+        variant = "light",
+	transparent = true,
+        saturation = 0.8,
+	italic_comments = true,
+      })
+      end,
   },
 
   -- Utility library required by many plugins
