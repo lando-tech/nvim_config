@@ -35,7 +35,7 @@ require("lazy").setup({
     config = function()
       vim.cmd("colorscheme cyberdream")
       require("cyberdream").setup({
-        variant = "light",
+        variant = "default",
 	transparent = true,
         saturation = 0.8,
 	italic_comments = true,
