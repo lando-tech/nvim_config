@@ -3,6 +3,20 @@
 -- Ensure Python path
 vim.g.python3_host_prog = '/home/landotech/.config/nvim/venv/'
 
+local function activate_venv()
+    local venv_path = vim.fn.stdpath("config") .. "/nvim/venv/bin/activate"
+
+    if vim.fn.filereadable(venv_path) == 1 then
+        vim.cmd("silent !source " .. venv_path)
+        print("Centralized virtual environment activated")
+    end 
+end
+
+vim.api.nvim_create_autocmd("BufEnter", {
+    pattern = "*.py",
+    callback = activate_venv,
+})
+
 -- Configure diagnostics
 vim.diagnostic.config({
     virtual_text = false,
