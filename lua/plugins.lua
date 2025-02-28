@@ -28,19 +28,25 @@ require("lazy").setup({
   --     require("onedark").load()
   --   end
   -- },
+	--   {
+	--     "scottmckendry/cyberdream.nvim",
+	--     lazy = false,
+	--     priority = 1000,
+	--     config = function()
+	--       vim.cmd("colorscheme cyberdream")
+	--       require("cyberdream").setup({
+	--         variant = "light",
+	-- transparent = false,
+	--         saturation = 0.8,
+	-- italic_comments = true,
+	--       })
+	--       end,
+	--   },
   {
-    "scottmckendry/cyberdream.nvim",
+    "folke/tokyonight.nvim",
     lazy = false,
     priority = 1000,
-    config = function()
-      vim.cmd("colorscheme cyberdream")
-      require("cyberdream").setup({
-        variant = "default",
-	transparent = true,
-        saturation = 0.8,
-	italic_comments = true,
-      })
-      end,
+    opts = {},
   },
 
   -- Utility library required by many plugins
@@ -141,6 +147,4 @@ require("lazy").setup({
   "sbdchd/neoformat"
 
 })
-
-
 

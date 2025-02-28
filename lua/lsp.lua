@@ -1,7 +1,7 @@
 -- Setup LSP
 
 -- Ensure Python path
-vim.g.python3_host_prog = '/home/landotech/.config/nvim/venv/'
+vim.g.python3_host_prog = '/home/landotech/.config/nvim/venv/bin/python3'
 
 local function activate_venv()
     local venv_path = vim.fn.stdpath("config") .. "/nvim/venv/bin/activate"
