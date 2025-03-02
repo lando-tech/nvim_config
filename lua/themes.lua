@@ -18,7 +18,7 @@ local function change_theme_shortcut()
         vim.cmd("colorscheme tokyonight-day")
     else 
         vim.o.background = "dark"
-        vim.cmd("colorscheme tokyonight-storm")
+        vim.cmd("colorscheme tokyonight")
     end
 end
 

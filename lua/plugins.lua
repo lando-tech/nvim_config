@@ -21,27 +21,6 @@ require("lazy").setup({
   -- Neovim LSP configurations
   "neovim/nvim-lspconfig",
 
-  -- OneDark Theme
-  -- {
-  --   "navarasu/onedark.nvim",
-  --   config = function()
-  --     require("onedark").load()
-  --   end
-  -- },
-	--   {
-	--     "scottmckendry/cyberdream.nvim",
-	--     lazy = false,
-	--     priority = 1000,
-	--     config = function()
-	--       vim.cmd("colorscheme cyberdream")
-	--       require("cyberdream").setup({
-	--         variant = "light",
-	-- transparent = false,
-	--         saturation = 0.8,
-	-- italic_comments = true,
-	--       })
-	--       end,
-	--   },
   {
     "folke/tokyonight.nvim",
     lazy = false,
@@ -96,7 +75,13 @@ require("lazy").setup({
   },
 
   -- Indentation guides
-  "lukas-reineke/indent-blankline.nvim",
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
+    config = function()
+        require("ibl").setup()
+    end
+  },
 
   -- OrgMode
   {

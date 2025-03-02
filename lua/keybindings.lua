@@ -32,7 +32,7 @@ vim.api.nvim_set_keymap('n', '<leader>p', ':bprevious<CR>', { noremap = true, si
 vim.api.nvim_set_keymap('t', '<Esc>', '<C-\\><C-n>', { noremap = true, silent = true })
 
 -- Run python script in a new terminal split below 
-vim.api.nvim_set_keymap('n', '<leader>r', ':w | belowright split | resize -10 | :terminal python3 %<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>r', ':w | belowright split | resize -10 | :terminal ~/.config/nvim/venv/bin/python3 %<CR>', { noremap = true, silent = true })
 
 -- Run lua script in new terminal
 vim.api.nvim_set_keymap('n', '<leader>lr', ':w | belowright split | resize -10 | terminal lua %<CR>', { noremap = true, silent = true })
