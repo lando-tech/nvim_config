@@ -21,15 +21,8 @@ require("lazy").setup({
   -- Neovim LSP configurations
   "neovim/nvim-lspconfig",
 
-  {
-    "folke/tokyonight.nvim",
-    lazy = false,
-    priority = 1000,
-    opts = {},
-  },
-
   -- Utility library required by many plugins
-  "nvim-lua/plenary.nvim",
+  -- "nvim-lua/plenary.nvim",
 
   -- Snippet engine
   "L3MON4D3/LuaSnip",
@@ -80,17 +73,6 @@ require("lazy").setup({
     main = "ibl",
     config = function()
         require("ibl").setup()
-    end
-  },
-
-  -- OrgMode
-  {
-    "nvim-orgmode/orgmode",
-    config = function()
-      require("orgmode").setup({
-        org_agenda_files = {"~/Dropbox/org/", "~/my-orgs/**/*"},
-        org_default_notes_file = "~/Dropbox/org/refile.org",
-      })
     end
   },
 
