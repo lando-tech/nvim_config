@@ -22,7 +22,7 @@ require("lazy").setup({
   "neovim/nvim-lspconfig",
 
   -- Utility library required by many plugins
-  -- "nvim-lua/plenary.nvim",
+  "nvim-lua/plenary.nvim",
 
   -- Snippet engine
   "L3MON4D3/LuaSnip",

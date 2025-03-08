@@ -1,6 +1,5 @@
 vim.cmd("colorscheme elflord")
 
-
 -- local function change_theme_time() 
 --     local current_time = tonumber(os.date("%H")) 
 --     local day_theme = " tokyonight-day"
