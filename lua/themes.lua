@@ -1,4 +1,4 @@
-vim.cmd("colorscheme elflord")
+vim.cmd.colorscheme("duskfox")
 
 -- local function change_theme_time() 
 --     local current_time = tonumber(os.date("%H")) 

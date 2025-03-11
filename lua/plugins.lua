@@ -29,6 +29,11 @@ require("lazy").setup({
 
   -- Commenting plugin
   "terrortylor/nvim-comment",
+  
+  {
+    "EdenEast/nightfox.nvim",
+    priority = 1000,
+  },
 
   -- Statusline
   {
