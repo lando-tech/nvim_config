@@ -1,15 +1,16 @@
--- Setup LSP
+-- Setup LSP and autocomplete
 
 -- Ensure Python path
 vim.g.python3_host_prog = '/home/landotech/.config/nvim/venv/bin/python3'
 
+-- Activate virtual env
 local function activate_venv()
     local venv_path = vim.fn.stdpath("config") .. "/nvim/venv/bin/activate"
 
     if vim.fn.filereadable(venv_path) == 1 then
         vim.cmd("silent !source " .. venv_path)
         print("Centralized virtual environment activated")
-    end 
+    end
 end
 
 vim.api.nvim_create_autocmd("BufEnter", {
@@ -24,16 +25,24 @@ vim.diagnostic.config({
     underline = true,
     update_in_insert = false,
     severity_sort = true,
-    float = {
-        source = 'always',
-    }
+    -- float = {
+    --     source = 'always',
+    -- }
 })
 
 -- Function to show diagnostics in floating window
-vim.o.updatetime = 250
-vim.cmd([[ 
-    autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false})
-]])
+vim.api.nvim_create_autocmd("CursorHold", {
+    callback = function()
+        vim.diagnostic.open_float(nil, {
+            focusable = false,
+            close_events = {"BufLeave", "CursorMoved", "InsertEnter", "FocusLost"},
+            border = "rounded",
+            source = "always",
+            prefix = " ",
+            scope = "cursor",
+        })
+    end
+})
 
 -- LSP setup
 local lspconfig = require'lspconfig'
@@ -60,7 +69,6 @@ require('lspconfig').lua_ls.setup({
   },
 })
 
-
 -- Python (pylsp)
 lspconfig.pylsp.setup{
   on_attach = on_attach,
@@ -85,6 +93,16 @@ lspconfig.pylsp.setup{
   capabilities = capabilities,
 }
 
+-- Setup neoformat using black for python
+vim.g.neoformat_enabled_python = {'black'}
+
+-- Autocommand to format on save for Python files
+vim.cmd([[
+  augroup fmt
+    autocmd!
+    autocmd BufWritePre *.py Neoformat
+  augroup END
+]])
 
 -- Rust (rust_analyzer) setup
 lspconfig.rust_analyzer.setup{
@@ -102,7 +120,7 @@ lspconfig.rust_analyzer.setup{
     }
 }
 
-
+-- Clangd setup
 require('lspconfig').clangd.setup{
     cmd = {
         "clangd",
@@ -145,7 +163,6 @@ require('lspconfig').clangd.setup{
     }
 }
 
-
 -- Setup nvim-cmp
 local cmp = require'cmp'
 
@@ -185,15 +202,4 @@ cmp.setup.cmdline(':', {
     { name = 'cmdline'},
   })
 })
-
--- Setup neoformat using black for python
-vim.g.neoformat_enabled_python = {'black'}
-
--- Autocommand to format on save for Python files
-vim.cmd([[
-  augroup fmt
-    autocmd!
-    autocmd BufWritePre *.py Neoformat
-  augroup END
-]])
 

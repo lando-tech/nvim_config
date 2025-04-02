@@ -1,4 +1,5 @@
--- Mappings.
+-- Mappings
+
 local on_attach = function(_, bufnr)
   local opts = { noremap=true, silent=true }
   -- Keymaps for LSP
