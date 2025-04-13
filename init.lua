@@ -4,4 +4,5 @@ require('options')    -- General settings
 require('keybindings')    -- Keybindings
 require('lsp')        -- LSP and autocomplete setup
 require('themes')     -- Load Themes
+require('my_plugins.main')
 
