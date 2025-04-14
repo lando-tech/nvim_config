@@ -23,6 +23,14 @@ vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 vim.tabstop = 4
 
+vim.o.showmatch = true
+vim.api.nvim_set_hl(0, "MatchParen", {
+  bg = "#3c2f4c",
+  fg = "#ffffff",
+  bold = true,
+})
+
+
 -- User functions 
 function GetHighlightGroupUnderCursor()
     local line = vim.fn.line('.')

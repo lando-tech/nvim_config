@@ -29,10 +29,59 @@ require("lazy").setup({
 
   -- Commenting plugin
   "terrortylor/nvim-comment",
+
+  {
+    "HiPhish/rainbow-delimiters.nvim",
+    event = "VeryLazy",
+    config = function()
+    end,
+  },
+
+  -- tabline
+  {
+    "romgrk/barbar.nvim",
+    dependencies = {
+      "lewis6991/gitsigns.nvim",
+      "nvim-tree/nvim-web-devicons",
+    },
+    init = function() vim.g.barbar_auto_setup = false end,
+    opts = {
+      animation = true,
+      clickable = true,
+      auto_hide = false,
+      gitsigns = {
+        added = {enabled = true, icon = '+'},
+        changed = {enabled = true, icon = '~'},
+        deleted = {enabled = true, icon = '-'},
+      },
+      filetype = {
+        custom_colors = false,
+        enabled = true,
+      },
+      separator = {left = ' ', right = ''},
+      maximum_padding = 1,
+      maximum_length = 30,
+      sidebar_filetypes = {
+        NvimTree = true,
+      },
+    },
+  },
   
   {
     "EdenEast/nightfox.nvim",
     priority = 1000,
+    config = function()
+      require("nightfox").setup({
+        options = {
+          transparent = false,
+          dim_inactive = true,
+          styles = {
+            keywords = "bold",
+            functions = "bold",
+          },
+        }, 
+      })
+    end,
   },
 
   -- Statusline
@@ -43,8 +92,10 @@ require("lazy").setup({
         options = {
           icons_enabled = true,
           theme = 'auto',
-          component_separators = { left = '', right = '' },
-          section_separators = { left = '', right = '' },
+          -- component_separators = { left = '', right = '' },
+          -- section_separators = { left = '', right = '' },
+          section_separators = { left = '', right = '' },
+          component_separators = { left = '⟡', right = '⟡'},
           always_divide_middle = true,
           globalstatus = false,
           refresh = {
@@ -54,20 +105,19 @@ require("lazy").setup({
           }
         },
         sections = {
-          lualine_a = {'mode'},
-          lualine_b = {'branch', 'diff', 'diagnostics'},
-          lualine_c = {'filename'},
+          lualine_a = { {'mode', icon = ''} },
+          lualine_b = { {'branch', icon = ''}, 'diff' },
+          -- lualine_c = {'filename'},
           lualine_x = {'encoding', 'fileformat', 'filetype'},
-          lualine_y = {},
-          lualine_z = {'location'}
+          lualine_y = { 
+              {'diagnostics', symbols = { 
+                  error = ' ', warn = ' ', info = ' ' } },
+              },
+          lualine_z = { {'location', icon = '󰞷'} },
         },
-        inactive_sections = {
-          lualine_c = {'filename'}
-        },
-        tabline = {
-          lualine_b = {'branch'},
-          lualine_c = {'filename'}
-        }
+        -- inactive_sections = {
+        --   lualine_c = {'filename'}
+        -- },
       }
     end
   },
