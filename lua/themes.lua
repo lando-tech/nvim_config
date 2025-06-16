@@ -1,9 +1,9 @@
-vim.cmd.colorscheme("nordfox")
+vim.cmd.colorscheme("elflord")
 
 local function change_theme_time() 
     local current_time = tonumber(os.date("%H")) 
     local day_theme = " dayfox"
-    local night_theme = " nordfox"
+    local night_theme = " elflord"
 
     if current_time >= 6 and current_time < 18 then
         vim.cmd("colorscheme" .. day_theme)
@@ -18,7 +18,7 @@ local function change_theme_shortcut()
         vim.cmd("colorscheme dayfox")
     else 
         vim.o.background = "dark"
-        vim.cmd("colorscheme nordfox")
+        vim.cmd("colorscheme elflord")
     end
 end
 
