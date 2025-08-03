@@ -17,26 +17,26 @@
 local lspconfig = require('lspconfig')
 
 -- Lua Lsp
--- lspconfig.lua_ls.setup({
---   cmd = { "/home/landotech/src/lua-language-server/bin/lua-language-server"},
---   settings = {
---     Lua = {
---       runtime = {
---         version = 'LuaJIT', -- Or "Lua 5.1" if you prefer
---       },
---       diagnostics = {
---         globals = { 'vim' }, -- Prevent warnings about 'vim'
---       },
---       workspace = {
---         library = vim.api.nvim_get_runtime_file("", true),
---         checkThirdParty = false, -- Disable third-party checks
---       },
---       telemetry = {
---         enable = false,
---       },
---     },
---   },
--- })
+lspconfig.lua_ls.setup({
+  cmd = { "lua-language-server"},
+  settings = {
+    Lua = {
+      runtime = {
+        version = 'LuaJIT', -- Or "Lua 5.1" if you prefer
+      },
+      diagnostics = {
+        globals = { 'vim' }, -- Prevent warnings about 'vim'
+      },
+      workspace = {
+        library = vim.api.nvim_get_runtime_file("", true),
+        checkThirdParty = false, -- Disable third-party checks
+      },
+      telemetry = {
+        enable = false,
+      },
+    },
+  },
+})
 
 -- Python (pylsp)
 lspconfig.pylsp.setup{
