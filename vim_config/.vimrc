@@ -1,6 +1,22 @@
+" VIM PLUGINS
+" All plugins are managed here.
+" After adding a plugin, run :PlugInstall in Vim.
+call plug#begin('~/.vim/plugged')
+
+" OPTION A: Fuzzy Finder (fzf.vim)
+" Requires installing the fzf command-line tool first.
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
+" OPTION B: File Tree (NERDTree)
+Plug 'preservim/nerdtree'
+
+call plug#end()
+
+
 " VIM OPTIONS 
 
-colorscheme elflord
+colorscheme retrobox
 
 " Disable compatibility mode with vi
 set nocompatible
@@ -58,6 +74,12 @@ set wildmode=list:longest
 
 " MAPPINGS 
 inoremap jj <Esc>
+
+" Fuzzy Finder (fzf) mapping: Press Ctrl + P to find files
+nnoremap <C-p> :Files<CR>
+
+" File Tree (NERDTree) mapping: Press Ctrl + N to toggle the file tree
+nnoremap <C-n> :NERDTreeToggle<CR>
 
 " VIMSCRIPT 
 " Enable code folding
