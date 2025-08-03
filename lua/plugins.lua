@@ -138,6 +138,26 @@ require("lazy").setup({
       require("nvim-treesitter.install").update({ with_sync = true })
     end
   },
+    
+  {
+    'nvim-telescope/telescope.nvim', tag = '0.1.8',
+  -- or                              , branch = '0.1.x',
+    dependencies = { 'nvim-lua/plenary.nvim' }
+  },
+
+  {
+    "NeogitOrg/neogit",
+    dependencies = {
+      "nvim-lua/plenary.nvim",         -- required
+      "sindrets/diffview.nvim",        -- optional - Diff integration
+
+      -- Only one of these is needed.
+      "nvim-telescope/telescope.nvim", -- optional
+      "ibhagwan/fzf-lua",              -- optional
+      "echasnovski/mini.pick",         -- optional
+      "folke/snacks.nvim",             -- optional
+    },
+  },
 
   -- Autocompletion
   {
