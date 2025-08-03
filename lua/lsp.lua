@@ -141,7 +141,7 @@ cmp.setup({
   })
 })
 
--- Use buffer source for '/' search completion 
+-- Use buffer source for '/' search completion
 cmp.setup.cmdline('/', {
   sources = {
     { name = 'buffer'}

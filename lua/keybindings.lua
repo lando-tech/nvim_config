@@ -32,7 +32,7 @@ vim.api.nvim_set_keymap('n', '<leader>p', ':bprevious<CR>', { noremap = true, si
 -- Set escape for terminal mode
 vim.api.nvim_set_keymap('t', '<Esc>', '<C-\\><C-n>', { noremap = true, silent = true })
 
--- Run python script in a new terminal split below 
+-- Run python script in a new terminal split below
 vim.api.nvim_set_keymap('n', '<leader>r', ':w | belowright split | resize -10 | :terminal python %<CR>', { noremap = true, silent = true })
 
 -- Run lua script in new terminal
@@ -47,6 +47,13 @@ vim.api.nvim_set_keymap('i', '[', '[]<Left>', { noremap = true })
 vim.api.nvim_set_keymap('i', '{', '{}<Left>', { noremap = true })
 vim.api.nvim_set_keymap('i', '"', '""<Left>', { noremap = true })
 vim.api.nvim_set_keymap('i', "'", "''<Left>", { noremap = true })
+
+-- Telescope keybindings
+vim.api.nvim_set_keymap('n', '<leader>f', ':Telescope find_files<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>fg', ':Telescope live_grep<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>fb', ':Telescope buffers<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>fh', ':Telescope help_tags<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>fr', ':Telescope oldfiles<CR>', { noremap = true, silent = true })
 
 -- Configure toggle comment block
 require('nvim_comment').setup({

@@ -4,5 +4,5 @@ require('lsp')        -- LSP and autocomplete setup
 require('options')    -- General settings
 require('keybindings')    -- Keybindings
 require('themes')     -- Load Themes
-require('plugins.main')
+require('notepad')
 
