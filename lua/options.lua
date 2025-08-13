@@ -5,13 +5,13 @@ vim.o.termguicolors = true
 vim.wo.number = true
 
 -- Disable gutter diagnostics
-vim.wo.signcolumn = 'no'
+-- vim.wo.signcolumn = 'no'
 
 -- Optional: Set relative line numbers (if you prefer)
 vim.wo.relativenumber = true
 
 -- Set cmd area height
-vim.o.cmdheight = 3
+-- vim.o.cmdheight = 3
 
 -- Set fold options 
 vim.opt.foldmethod = 'indent'
