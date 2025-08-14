@@ -38,6 +38,9 @@ vim.api.nvim_set_keymap('n', '<leader>r', ':w | belowright split | resize -10 | 
 -- Run lua script in new terminal
 vim.api.nvim_set_keymap('n', '<leader>lr', ':w | belowright split | resize -10 | terminal lua %<CR>', { noremap = true, silent = true })
 
+-- Run Ruby script in new terminal split below
+vim.api.nvim_set_keymap('n', '<leader>b', ':w | belowright split | resize -10 | terminal ruby %<CR>', { noremap = true, silent = true})
+
 -- Toggle folding on current line with spacebar
 vim.api.nvim_set_keymap('n', '<space>', 'za', { noremap = true})
 
