@@ -1,3 +1,4 @@
+local runner = require "notepad"
 -- Mappings
 
 local on_attach = function(_, bufnr)
@@ -20,17 +21,11 @@ vim.api.nvim_set_keymap('i', 'jj', '<Esc>', { noremap = true, silent = true })
 -- Set up a keybind to toggle the file tree (Ctrl + n)
 vim.api.nvim_set_keymap('n', '<C-n>', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
 
--- Switch tab next
-vim.api.nvim_set_keymap('n', '<Tab>', ':tabnext', { noremap = true, silent = true})
-
 -- Switch to the next buffer
 vim.api.nvim_set_keymap('n', '<leader>n', ':bnext<CR>', { noremap = true, silent = true })
 
 -- Switch to the previous buffer
 vim.api.nvim_set_keymap('n', '<leader>p', ':bprevious<CR>', { noremap = true, silent = true })
-
--- Set escape for terminal mode
-vim.api.nvim_set_keymap('t', '<Esc>', '<C-\\><C-n>', { noremap = true, silent = true })
 
 -- Run python script in a new terminal split below
 vim.api.nvim_set_keymap('n', '<leader>r', ':w | belowright split | resize -10 | :terminal python %<CR>', { noremap = true, silent = true })
@@ -52,11 +47,8 @@ vim.api.nvim_set_keymap('i', '"', '""<Left>', { noremap = true })
 vim.api.nvim_set_keymap('i', "'", "''<Left>", { noremap = true })
 
 -- Telescope keybindings
-vim.api.nvim_set_keymap('n', '<leader>f', ':Telescope find_files<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>fg', ':Telescope live_grep<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>fb', ':Telescope buffers<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>fh', ':Telescope help_tags<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>fr', ':Telescope oldfiles<CR>', { noremap = true, silent = true })
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>f', builtin.find_files, { desc = "Find files"})
 
 -- Configure toggle comment block
 require('nvim_comment').setup({
