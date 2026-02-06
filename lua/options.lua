@@ -13,7 +13,7 @@ vim.wo.relativenumber = true
 -- Set cmd area height
 -- vim.o.cmdheight = 3
 
--- Set fold options 
+-- Set fold options
 vim.opt.foldmethod = 'indent'
 vim.opt.foldlevel = 99
 vim.opt.foldenable = true
@@ -29,24 +29,6 @@ vim.api.nvim_set_hl(0, "MatchParen", {
   fg = "#ffffff",
   bold = true,
 })
-
-
--- User functions 
-function GetHighlightGroupUnderCursor()
-    local line = vim.fn.line('.')
-    local col = vim.fn.col('.')
-    local synID = vim.fn.synID(line, col, 1)
-    local synTransID = vim.fn.synIDtrans(synID)
-    local highlight_group = vim.fn.synIDattr(synTransID, 'name')
-
-    if highlight_group == "" then
-        print("No highlight group found")
-    else
-        print("Highlight Group: " .. highlight_group)
-    end
-end
-
-vim.api.nvim_set_keymap('n', '<leader>hg', ':lua GetHighlightGroupUnderCursor()<CR>', { noremap = true, silent = true })
 
 -- Enable spellcheck
 vim.opt.spell = true

@@ -11,5 +11,4 @@ require('lsp')        -- LSP and autocomplete setup
 require('options')    -- General settings
 require('keybindings')    -- Keybindings
 require('themes')     -- Load Themes
-require('notepad')
-
+require('filetypes')  -- File type configurations
